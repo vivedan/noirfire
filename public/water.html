@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>N01R - Fire</title>
+    <title>N01R - Water</title>
     <meta name="description" content="N01R - An immersive neo-party" />
 
     <link
@@ -135,13 +135,13 @@
                 case "wood":
                   overlay.style.visibility = "visible";
                   overlay.style.opacity= '1';
-                  window.setTimeout(function(){window.open("https://noir-mdwi7.ondigitalocean.app/woods.html", "_self")}, 2000);
+                  window.setTimeout(function(){window.open("/woods.html", "_self")}, 2000);
                   
                   break;
                 case "fire":
                   overlay.style.visibility = "visible";
                   overlay.style.opacity= '1';
-                  window.setTimeout(function(){window.open("https://noirfire-oiqbg.ondigitalocean.app/fire.html", "_self")}, 2000);
+                  window.setTimeout(function(){window.open("https://phnoirfire.herokuapp.com/fire.html", "_self")}, 2000);
               
                   break;
               }
@@ -161,7 +161,6 @@
         }
       });
     </script>
-
     <script>
       AFRAME.registerComponent("radio-streaming", {
         schema: {},
@@ -205,9 +204,9 @@
             var positionalAudio = new THREE.PositionalAudio(listener);
             positionalAudio.setMediaElementSource(audioElement);
             /*positionalAudio.setMediaStreamSource(stream);*/
-            positionalAudio.setVolume(1.3);
-            positionalAudio.setRefDistance(10);
-            positionalAudio.setRolloffFactor(5);
+            positionalAudio.setVolume(1);
+            positionalAudio.setRefDistance(5);
+            positionalAudio.setRolloffFactor(10);
             //positionalAudio.setDirectionalCone(180, 230, 0.1);
 
             /*var helper = new PositionalAudioHelper(positionalAudio, 0.1);
@@ -225,10 +224,11 @@
       id="music"
       preload="auto"
       style="display: none"
-      src="https://cors-anywhere.herokuapp.com/http://209.97.181.143/stream2"
+      src="https://cors-anywhere.herokuapp.com/http://209.97.181.143/stream"
       crossorigin="anonymous"
     ></audio>
     <div id="mainCont">
+      
       <div id="scene">
         <a-scene
           vr-mode-ui="enterVRButton: #VRButton"
@@ -239,6 +239,7 @@
       debug: true;
     "
           update-rate
+          
         >
           <a-assets>
             <img
@@ -259,29 +260,26 @@
             ></a-asset-item>
 
             <a-asset-item
-              id="fire1"
-              src="https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2Ffireroom2.glb?v=1602341145850"
+              id="coral1"
+              src="https://cdn.glitch.com/53d8eb3d-fb9a-4f10-bece-c5376dad01a9%2Fcoral1_3scaled7.glb?v=1601643515848"
               crossorigin="anonymous"
             ></a-asset-item>
             
             <a-asset-item
               id="crystals"
-              src="https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2Fcrystalsfire.glb?v=1603812028538"
+              src="https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2Fcrystalsunderwater.glb?v=1603812030469"
               crossorigin="anonymous"
             ></a-asset-item>
-            
-            
-            
             
             <!--MUSIC-->
             
             <audio
               id="audio1"
-              src="https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2FBurning%20Fire%20Places%20Sound.mp3?v=1604157771496"
+              src="https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2FambienceWater1.mp3?v=1607870408828"
             ></audio>
             <audio
               id="audio2"
-              src="https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2FWood%20Fire%20-%20No%20Copyright%20Sound%20Effects%20-%20Audio%20Library%20(1).mp3?v=1604157775500"
+              src="https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2FambienceWater2.mp3?v=1607870410213"
             ></audio>
             
             <audio
@@ -338,7 +336,7 @@
             networked="template:#player-template;attachTemplateToLocal:false;"
             movement-controls="speed: 0.2; fly: true"
             spawn-in-circle="radius:3;"
-            position="-60 1.3 0"
+            position="0 1.3 55"
             rotation="0 0 0"
           >
             <a-entity
@@ -361,7 +359,7 @@
           </a-entity>
 
           <a-entity
-            light="color: white; intensity: 2; type: ambient;"
+            light="color: white; intensity: 1; type: ambient;"
             visible=""
             position="0 6 0"
           ></a-entity>
@@ -371,7 +369,7 @@
                        color:#db6eff;
                        intensity: 5;
                        distance: 15"
-            position="0 0 50"
+            position="20 7.5 4"
           ></a-entity>
 
           <a-entity
@@ -388,88 +386,55 @@
             segments-height="10"
             segments-width="16"
           ></a-sky>
-          <a-entity id="particles" particle-system="preset: snow; color: #ff0000"></a-entity>
+          <a-entity id="particles" particle-system="preset: snow"></a-entity>
 
           
 
           <a-entity
             id="coralEnv"
-            gltf-model="#fire1"
-            position="0 1.6 0"
-            scale="2 2 2"
-            rotation="270 0 0"
+            gltf-model="#coral1"
+            position="0 -10 0"
           ></a-entity>
           
           
+                   
+          
+                    
           <a-entity
             id="radio"
             
-            position="75 0 0"
+            position="0 0 0"
             
-          ><a-sphere visible="false" radio-streaming></a-sphere><a-entity gltf-model="#crystals" scale="8 8 8"></a-entity>
+          ><a-sphere visible="false" radio-streaming></a-sphere><a-entity gltf-model="#crystals" scale="4 4 4"></a-entity>
           </a-entity>
           
-          <a-entity gltf-model="#crystals" scale="4 4 4" position="75 2 -40">
+          <a-entity gltf-model="#crystals" scale="4 4 4" position="-43 2 -10">
           <a-sphere
               radius="10"
               
               visible="false"
               sound="src: #audio1; 
                     autoplay: true;
-                    volume: 0.5;
+                    volume: 1;
                     loop: true;
-                    refDistance: 60;
-                    rolloffFactor: 5"
+                    refDistance: 20;
+                    rolloffFactor: 10"
             >
             </a-sphere></a-entity>
           
-          <a-entity gltf-model="#crystals" scale="4 4 4" position="75 2 40">
+          <a-entity gltf-model="#crystals" scale="4 4 4" position="43 2 -10">
           <a-sphere
               radius="10"
               
               visible="false"
               sound="src: #audio2; 
                     autoplay: true;
-                    volume: 0.5;
+                    volume: 1;
                     loop: true;
-                    refDistance: 60;
-                    rolloffFactor: 5"
-              
+                    refDistance: 20;
+                    rolloffFactor: 10"
             >
             </a-sphere></a-entity>
-          
-           <!--PORTALWOOD-->
-          
-                    
-          <a-entity position="29 22 21" rotation="20 25 -20">
-            <a-entity animation="property: rotation; to: 360 0 0; loop: true; dur: 30000">
-            <a-entity geometry="primitive: plane" 
-                      material="src: https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2FWood.png?v=1603798287641; alphaTest: 0.5; transparent: true; side: double" 
-                      scale="15 15 15" 
-                      rotation="0 -90 0"></a-entity>
-              </a-entity>
-          </a-entity>
-        <a-sphere
-          class="ports"
-          id="port1"
-          visible="false"
-          scale="0.1 4 4"
-          position="29 22 21" rotation="20 25 -20" 
-          sphere-collider="objects: #playerCollider; state: wood; radius: 0.5"
-                  sound="src: #woodaudio; 
-                    autoplay: true;
-                    volume: 3;
-                    loop: true;
-                    refDistance: 3;
-                    rolloffFactor: 5"
-          ></a-sphere>
-          <!--<a-entity
-            light="type: point;
-                       color: white;
-                       intensity: 5;
-                       distance: 7"
-            position="35 28 21"
-          ></a-entity>-->
           
           
         </a-scene>
@@ -582,7 +547,7 @@
           <!--<h1 id="title">
             PH706
           </h1>-->
-          <img id="subtitle" src="https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2Ficons-17.png?v=1603803447722" />
+          <img id="subtitle" src="https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2Ficons-18.png?v=1603653286077" />
 
           <div id="instructions">
             <div class="instructionInline">
@@ -872,7 +837,7 @@
         }
       }
     </script>
-    
+
     <!--CHAT-->
     <script>
       let chattext = player.querySelector(".chattext");
@@ -941,12 +906,10 @@
           !doc.msFullscreenElement
         ) {
           requestFullScreen.call(docEl);
-          FSbutton.src =
-            "https://cdn.glitch.com/0e65d536-0425-4e6e-8059-1247674b938e%2Fback%20fullscreen.png?v=1592571348479";
+          
         } else {
           cancelFullScreen.call(doc);
-          FSbutton.src =
-            "https://cdn.glitch.com/0e65d536-0425-4e6e-8059-1247674b938e%2Ffullscreen.png?v=1592571348624";
+          
         }
       }
     </script>
