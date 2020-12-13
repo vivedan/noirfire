@@ -1,8 +1,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>PH706 - The party</title>
-    <meta name="description" content="PH706 - An immersive neo-party" />
+    <title>N01R - Fire</title>
+    <meta name="description" content="N01R - An immersive neo-party" />
 
     <link
       rel="shortcut icon"
@@ -135,7 +135,7 @@
                 case "wood":
                   overlay.style.visibility = "visible";
                   overlay.style.opacity= '1';
-                  window.setTimeout(function(){window.open("https://phnoir.herokuapp.com/woods.html", "_self")}, 2000);
+                  window.setTimeout(function(){window.open("https://noir-mdwi7.ondigitalocean.app/woods.html", "_self")}, 2000);
                   
                   break;
                 case "fire":
@@ -618,12 +618,13 @@
           </div>
 
           <div id="enterName">
-            <!--<input
+            <input
               id="firstUsername"
+              type="text"
               class="enterContent"
               placeholder="Write your Username here!"
               tabindex="1"
-            />-->
+            />
             <button
               id="enterButton"
               class="enterContent"
@@ -744,13 +745,14 @@
     <script>
       let button = document.getElementById("myButton");
       let icon = document.getElementById("muteIcon");
-      let audiortc = sessionStorage.getItem("audiortc");
+      localStorage.setItem("audiortc", 0);
+      let audiortc = localStorage.getItem("audiortc");
       console.log(audiortc);
 
       function checkMic() {
         if (audiortc == 0) {
           easyrtc.enableMicrophone(false);
-          sessionStorage.setItem("audiortc", 0);
+          localStorage.setItem("audiortc", 0);
           audiortc = 0;
           console.log(audiortc);
           button.innerHTML = "Unmute";
@@ -758,7 +760,7 @@
             "https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2Fmaikefeng-jingyin-2.png?v=1603802144461";
         } else {
           easyrtc.enableMicrophone(true);
-          sessionStorage.setItem("audiortc", 1);
+          localStorage.setItem("audiortc", 1);
           audiortc = 1;
           console.log(audiortc);
           button.innerHTML = "Mute";
@@ -770,7 +772,7 @@
       function toggleMic() {
         if (audiortc == 1) {
           easyrtc.enableMicrophone(false);
-          sessionStorage.setItem("audiortc", 0);
+          localStorage.setItem("audiortc", 0);
           audiortc = 0;
           console.log(audiortc);
           button.innerHTML = "Unmute";
@@ -778,7 +780,7 @@
             "https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2Fmaikefeng-jingyin-2.png?v=1603802144461";
         } else {
           easyrtc.enableMicrophone(true);
-          sessionStorage.setItem("audiortc", 1);
+          localStorage.setItem("audiortc", 1);
           audiortc = 1;
           console.log(audiortc);
           button.innerHTML = "Mute";
@@ -802,22 +804,52 @@
       let yourName = document.getElementById("userName");
       let bottomName = document.getElementById("bottomUsername");
 
-      let greeting = document.getElementById("subtitle");
-
-      greeting.innerHTML += " " + username + ".";
+      //let greeting = document.getElementById("subtitle");
+      //greeting.innerHTML += " " + username + ".";
+      
+      
+      console.log("firstInput = " + username);
+      
+      if (username != ("" || null)){
+      
+        document.getElementById("firstUsername").setAttribute("placeholder", username);
+      
+      };
 
       function changeUsernameFirst() {
-        nametag.setAttribute("text", "value", username);
-
+        
+        var firstInput = document.getElementById("firstUsername").value;
+        
         let uitop = document.getElementById("ingameUItop");
         let uibottom = document.getElementById("ingameUIbottom");
 
         var enter = document.getElementById("enter");
-        yourName.setAttribute("placeholder", username);
-        bottomName.innerHTML = username;
-        enter.style.display = "none";
-        uitop.style.display = "flex";
-        uibottom.style.display = "flex";
+        
+        if (firstInput != ""){
+      
+          
+          sessionStorage.setItem("username", firstInput);
+          
+          nametag.setAttribute("text", "value", firstInput);
+
+
+          yourName.setAttribute("placeholder", firstInput);
+          bottomName.innerHTML = firstInput;
+          enter.style.display = "none";
+          uitop.style.display = "flex";
+          uibottom.style.display = "flex";
+        }else{
+        
+
+          nametag.setAttribute("text", "value", username);
+
+
+          yourName.setAttribute("placeholder", username);
+          bottomName.innerHTML = username;
+          enter.style.display = "none";
+          uitop.style.display = "flex";
+          uibottom.style.display = "flex";
+        };
 
         checkMic();
       }
@@ -840,7 +872,7 @@
         }
       }
     </script>
-
+    
     <!--CHAT-->
     <script>
       let chattext = player.querySelector(".chattext");

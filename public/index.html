@@ -1,8 +1,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>PH706 - The party</title>
-    <meta name="description" content="PH706 - An immersive neo-party" />
+    <title>N01R - The party</title>
+    <meta name="description" content="N01R - An immersive neo-party" />
 
     <link
       rel="shortcut icon"
@@ -193,6 +193,21 @@
             <audio
               id="woodaudio"
               src="https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2Fwood%20portal.mp3?v=1604240454571"
+            ></audio>
+            
+            <audio
+              id="wateraudio"
+              src="https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2Funderwater%20portal.mp3?v=1607869198999"
+            ></audio>
+            
+            <audio
+              id="darkaudio"
+              src="https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2Fdark%20portal.mp3?v=1607869200077"
+            ></audio>
+            
+            <audio
+              id="iceaudio"
+              src="https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2Fcold%20portal.mp3?v=1607869198725"
             ></audio>
             
 
@@ -427,7 +442,107 @@
                        distance: 7"
             position="0 6 7"
           ></a-entity>
-
+          
+          
+          <!--PORTALWATER
+          
+          <a-entity position="0 1.5 -10" rotation="0 90 0">
+            <a-entity animation="property: rotation; to: 360 0 0; loop: true; dur: 30000">
+          <a-entity 
+                    geometry="primitive: plane" 
+                    material="src: https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2FUnderwater.png?v=1603798287641; alphaTest: 0.5; transparent: true; side: double" 
+                    scale="10 10 10" 
+                    rotation="0 -90 0"></a-entity>
+          </a-entity>
+          </a-entity>
+        <a-sphere
+          class="ports"
+          id="port3"
+          visible="false"
+          scale="0.1 3 3"
+          position="0 1.5 -10"
+          rotation="0 90 0"
+          sphere-collider="objects: #playerCollider; state: water; radius: 0.5"
+          sound="src: #wateraudio; 
+                    autoplay: true;
+                    volume: 2;
+                    loop: true;
+                    refDistance: 3;
+                    rolloffFactor: 5"
+          ></a-sphere>
+          <a-entity
+            light="type: point;
+                       color: white;
+                       intensity: 5;
+                       distance: 7"
+            position="0 6 -7"
+          ></a-entity>-->
+          
+          <!--PORTALDARK
+          
+          <a-entity position="10 1.5 10" rotation="0 135 0">
+            <a-entity animation="property: rotation; to: 360 0 0; loop: true; dur: 30000">
+          <a-entity 
+                    geometry="primitive: plane" 
+                    material="src: https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2FNo%20Light.png?v=1603798262540; alphaTest: 0.5; transparent: true; side: double" 
+                    scale="10 10 10" 
+                    rotation="0 -90 0"></a-entity>
+          </a-entity>
+          </a-entity>
+        <a-sphere
+          class="ports"
+          id="port4"
+          visible="false"
+          scale="0.1 3 3"
+          position="10 1.5 10"
+          rotation="0 135 0"
+          sphere-collider="objects: #playerCollider; state: dark; radius: 0.5"
+          sound="src: #darkaudio; 
+                    autoplay: true;
+                    volume: 2;
+                    loop: true;
+                    refDistance: 3;
+                    rolloffFactor: 5"
+          ></a-sphere>
+          <a-entity
+            light="type: point;
+                       color: white;
+                       intensity: 5;
+                       distance: 7"
+            position="7 6 7"
+          ></a-entity>-->
+          
+          <!--PORTALICE
+          
+          <a-entity position="-10 1.5 0" animation="property: rotation; to: 360 0 0; loop: true; dur: 30000">
+          <a-entity 
+                    geometry="primitive: plane" 
+                    material="src: https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2FMental.png?v=1603798287899; alphaTest: 0.5; transparent: true; side: double" 
+                    scale="10 10 10" 
+                    rotation="0 -90 0"></a-entity>
+          </a-entity>
+        <a-sphere
+          class="ports"
+          id="port5"
+          visible="false"
+          scale="0.1 3 3"
+          position="-10 1.5 0"
+          sphere-collider="objects: #playerCollider; state: ice; radius: 0.5"
+          sound="src: #iceaudio; 
+                    autoplay: true;
+                    volume: 2;
+                    loop: true;
+                    refDistance: 3;
+                    rolloffFactor: 5"
+          ></a-sphere>
+          <a-entity
+            light="type: point;
+                       color: white;
+                       intensity: 5;
+                       distance: 7"
+            position="-7 6 0"
+          ></a-entity>-->
+          
           
         </a-scene>
       </div>
@@ -706,14 +821,14 @@
     <script>
       let button = document.getElementById("myButton");
       let icon = document.getElementById("muteIcon");
-      sessionStorage.setItem("audiortc", 1);
-      let audiortc = sessionStorage.getItem("audiortc");
+      localStorage.setItem("audiortc", 1);
+      let audiortc = localStorage.getItem("audiortc");
       console.log(audiortc);
 
       function toggleMic() {
         if (audiortc == 1) {
           easyrtc.enableMicrophone(false);
-          sessionStorage.setItem("audiortc", 0);
+          localStorage.setItem("audiortc", 0);
           audiortc = 0;
           console.log(audiortc);
           button.innerHTML = "Unmute";
@@ -721,7 +836,7 @@
             "https://cdn.glitch.com/f44e7d0f-6299-4434-a136-b24515e92365%2Fmaikefeng-jingyin-2.png?v=1603802144461";
         } else {
           easyrtc.enableMicrophone(true);
-          sessionStorage.setItem("audiortc", 1);
+          localStorage.setItem("audiortc", 1);
           audiortc = 1;
           console.log(audiortc);
           button.innerHTML = "Mute";
@@ -746,7 +861,7 @@
         var firstInput = document.getElementById("firstUsername").value;
         nametag.setAttribute("text", "value", firstInput);
 
-        sessionStorage.setItem("username", firstInput);
+        localStorage.setItem("username", firstInput);
         
         let uitop = document.getElementById("ingameUItop");
         let uibottom = document.getElementById("ingameUIbottom");
@@ -774,7 +889,7 @@
           nametag.setAttribute("text", "value", input);
           bottomName.innerHTML = input;
           userName.style.display = "none";
-          sessionStorage.setItem("username", input);
+          localStorage.setItem("username", input);
         }
       }
     </script>
